@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useState } from 'react';
+import TodoList from './To-do-list';
+import Header from './header';
+import Hero from './To-Do-hero';
 import './App.css';
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const completedTodos = todos.filter(todo => todo.completed).length;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Hero completed={completedTodos} total={todos.length} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
