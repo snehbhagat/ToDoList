@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './To-do-list.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function TodoList({ todos, setTodos }) {
   const [inputValue, setInputValue] = useState('');
+  const [isEditing , setEditing] = useState(false);
+  const [currentTodo , setCurrentTodo] = useState(null);
 
   const addTodo = () => {
     if (inputValue.trim() !== '') {
@@ -23,6 +27,20 @@ function TodoList({ todos, setTodos }) {
     setTodos(newTodos);
   };
 
+  const handleEditTodo =(index) => {
+    setCurrentTodo(index);
+    setInputValue(todos[index].text);
+    setEditing(true);
+  };
+  const handleUpdateTodo = () => {
+    const newTodos = [...todos];
+    newTodos[currentTodo].text = inputValue;
+    setTodos(newTodos);
+    setInputValue('');
+    setEditing(false);
+    setCurrentTodo(null);
+  };
+
   return (
     <div className="todo-list">
       <h2>What task do you want to complete today?</h2>
@@ -32,14 +50,17 @@ function TodoList({ todos, setTodos }) {
         onChange={(e) => setInputValue(e.target.value)} 
         placeholder="Enter a task"
       />
-      <button onClick={addTodo}>
-        <i className="ri-add-circle-fill"></i>
+      <button onClick={isEditing ? handleUpdateTodo : addTodo}>
+        {isEditing ? 'Update' : 'Add'}
       </button>
       <ul>
         {todos.map((todo, index) => (
           <li key={index} className={todo.completed ? 'completed' : ''}>
             <span onClick={() => toggleComplete(index)}>{todo.text}</span>
-            <button onClick={() => deleteTodo(index)}>Delete</button>
+            <div className="actions">
+              <FontAwesomeIcon icon={faEdit} onClick={() => handleEditTodo(index)} />
+              <FontAwesomeIcon icon={faTrash} onClick={() => deleteTodo(index)} />
+            </div>
           </li>
         ))}
       </ul>
