@@ -1,16 +1,30 @@
 .header {
-    background-color: #282c34;
+    background-color: #3498DB;
     padding: 20px;
-    color: white;
+    color: #333;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px rgba(249, 248, 248, 0.3);
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    justify-content: center;
+    border-radius: 15px;
   }
   
-  .header-title {
-    margin: 0;
+  .ri-file-list-3-line{
     font-size: 2.5rem;
-    font-weight: 300;
+    color: #2980B9;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap');
+  
+  .header-title {
+    color: whitesmoke;
+    margin: 10px;
+    font-size: 2.5rem;
+    font-weight: 700;
     letter-spacing: 1px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Anek Devanagari";
   }
   

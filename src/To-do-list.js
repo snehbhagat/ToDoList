@@ -25,14 +25,16 @@ function TodoList({ todos, setTodos }) {
 
   return (
     <div className="todo-list">
-      <h2>Todo List</h2>
+      <h2>What task do you want to complete today?</h2>
       <input 
         type="text" 
         value={inputValue} 
         onChange={(e) => setInputValue(e.target.value)} 
         placeholder="Enter a task"
       />
-      <button onClick={addTodo}>Add</button>
+      <button onClick={addTodo}>
+        <i className="ri-add-circle-fill"></i>
+      </button>
       <ul>
         {todos.map((todo, index) => (
           <li key={index} className={todo.completed ? 'completed' : ''}>
